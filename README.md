@@ -1,4 +1,4 @@
-# White House Web API Standards
+# Topcoder API Standards
 
 * [Guidelines](#guidelines)
 * [Pragmatic REST](#pragmatic-rest)
@@ -14,13 +14,18 @@
 
 ## Guidelines
 
-This document provides guidelines and examples for White House Web APIs, encouraging consistency, maintainability, and best practices across applications. White House APIs aim to balance a truly RESTful API interface with a positive developer experience (DX).
+This document provides guidelines and examples for Topcoder APIs, encouraging consistency, maintainability, and best practices across applications. This repo was forked from [White House Web API Standards](https://github.com/WhiteHouse/api-standards) and simplified version of the [V3 Topcoder API Specificiation](https://docs.google.com/presentation/d/15pucEI0MHj9y778EyaAWGh4MBH-I73i1-GS0ir7FhxE/edit)
 
 This document borrows heavily from:
+* [White House Web API Standards](https://github.com/WhiteHouse/api-standards)
+* [Topcoder API Specificiation](https://docs.google.com/presentation/d/15pucEI0MHj9y778EyaAWGh4MBH-I73i1-GS0ir7FhxE/edit)
+* [18F API Standards](https://github.com/18F/api-standards)
+* [Github API Standards](https://developer.github.com/v3/)
 * [Designing HTTP Interfaces and RESTful Web Services](https://www.youtube.com/watch?v=zEyg0TnieLg)
 * [API Facade Pattern](http://apigee.com/about/resources/ebooks/api-fa%C3%A7ade-pattern), by Brian Mulloy, Apigee
 * [Web API Design](http://pages.apigee.com/web-api-design-ebook.html), by Brian Mulloy, Apigee
 * [Fielding's Dissertation on REST](http://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm)
+
 
 ## Pragmatic REST
 
@@ -293,3 +298,6 @@ JSONP is easiest explained with an example. Here's one from [StackOverflow](http
 >         };
 
 http://stackoverflow.com/questions/2067472/what-is-jsonp-all-about?answertab=votes#tab-top
+
+## Future Ideas
+* [Support json-ld](http://www.hydra-cg.com/)
