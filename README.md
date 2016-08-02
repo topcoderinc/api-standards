@@ -31,9 +31,8 @@ This document borrows heavily from:
 
 These guidelines aim to support a truly RESTful API. Here are a few exceptions:
 * Put the version number of the API in the URL (see examples below). Don’t accept any requests that do not specify a version number.
-* Allow users to request formats like JSON or XML like this:
+* The Topcoder API will only support JSON not XML
     * http://example.gov/api/v1/magazines.json
-    * http://example.gov/api/v1/magazines.xml
 
 ## RESTful URLs
 
@@ -48,24 +47,18 @@ These guidelines aim to support a truly RESTful API. Here are a few exceptions:
     * If it changes the logic you write to handle the response, put it in the URL.
     * If it doesn’t change the logic for each response, like OAuth info, put it in the header.
 * Specify optional fields in a comma separated list.
-* Formats should be in the form of api/v2/resource/{id}.json
+* Formats should be in the form of api/v2/resource/{id}
 
 ### Good URL examples
-* List of magazines:
-    * GET http://www.example.gov/api/v1/magazines.json
+* List of members:
+    * GET http://api.topcoder.com/v2/data/srm/contests
 * Filtering is a query:
-    * GET http://www.example.gov/api/v1/magazines.json?year=2011&sort=desc
-    * GET http://www.example.gov/api/v1/magazines.json?topic=economy&year=2011
-* A single magazine in JSON format:
-    * GET http://www.example.gov/api/v1/magazines/1234.json
-* All articles in (or belonging to) this magazine:
-    * GET http://www.example.gov/api/v1/magazines/1234/articles.json
-* All articles in this magazine in XML format:
-    * GET http://example.gov/api/v1/magazines/1234/articles.xml
+    * GET http://api.topcoder.com/v2/challenges/active?&type=design
+    * GET http://api.topcoder.com/v2/challenges/active?&type=design&pageSize=50&pageIndex=1&submissionEndFrom=2014-03-01&submissionEndTo=2014-03-15
+* A single challenge:
+    * GET http://api.topcoder.com/v2/challenges/30000000
 * Specify optional fields in a comma separated list:
-    * GET http://www.example.gov/api/v1/magazines/1234.json?fields=title,subtitle,date
-* Add a new article to a particular magazine:
-    * POST http://example.gov/api/v1/magazines/1234/articles
+    * GET http://api.topcoder.com//v3/environments?fields=id,name,jobs
 
 ### Bad URL examples
 * Non-plural noun:
@@ -96,6 +89,7 @@ The action taken on the representation will be contextual to the media type bein
 * No values in keys
 * No internal-specific names (e.g. "node" and "taxonomy term")
 * Metadata should only contain direct properties of the response set, not properties of the members of the response set
+
 
 ### Good examples
 
@@ -268,36 +262,7 @@ Implementing this feature early in development ensures that the API will exhibit
 
 Note: If the mock parameter is included in a request to the production environment, an error should be raised.
 
-
-## JSONP
-
-JSONP is easiest explained with an example. Here's one from [StackOverflow](http://stackoverflow.com/questions/2067472/what-is-jsonp-all-about?answertab=votes#tab-top):
-
-> Say you're on domain abc.com, and you want to make a request to domain xyz.com. To do so, you need to cross domain boundaries, a no-no in most of browserland.
-
-> The one item that bypasses this limitation is `<script>` tags. When you use a script tag, the domain limitation is ignored, but under normal circumstances, you can't really DO anything with the results, the script just gets evaluated.
-
-> Enter JSONP. When you make your request to a server that is JSONP enabled, you pass a special parameter that tells the server a little bit about your page. That way, the server is able to nicely wrap up its response in a way that your page can handle.
-
-> For example, say the server expects a parameter called "callback" to enable its JSONP capabilities. Then your request would look like:
-
->         http://www.xyz.com/sample.aspx?callback=mycallback
-
-> Without JSONP, this might return some basic javascript object, like so:
-
->         { foo: 'bar' }
-
-> However, with JSONP, when the server receives the "callback" parameter, it wraps up the result a little differently, returning something like this:
-
->         mycallback({ foo: 'bar' });
-
-> As you can see, it will now invoke the method you specified. So, in your page, you define the callback function:
-
->         mycallback = function(data){
->             alert(data.foo);
->         };
-
-http://stackoverflow.com/questions/2067472/what-is-jsonp-all-about?answertab=votes#tab-top
-
 ## Future Ideas
+* [Support JSONP](http://stackoverflow.com/questions/2067472/what-is-jsonp-all-about?answertab=votes#tab-top
+)
 * [Support json-ld](http://www.hydra-cg.com/)
